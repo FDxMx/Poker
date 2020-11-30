@@ -25,17 +25,17 @@ import it.poker.service.user.UserService;
 @WebServlet("/RegistrazioneUserServlet")
 public class RegistrazioneUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private UserService userService;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegistrazioneUserServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public RegistrazioneUserServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -46,38 +46,51 @@ public class RegistrazioneUserServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String data = request.getParameter("data");
-		
+
 		UserDTO userDTO = new UserDTO(nome, cognome, username, password, data);
 		List<String> userErrors = userDTO.errors();
-		if(!userErrors.isEmpty()) {
+		if (!userErrors.isEmpty()) {
 			request.setAttribute("user", userDTO);
 			request.setAttribute("errori", userErrors);
 			request.getRequestDispatcher("registrazione.jsp").forward(request, response);
 			return;
 		} else {
 			User user = UserDTO.buildModelFromDto(userDTO);
-			user.setEsperienza(0);
-			user.setCredito(0);
-			user.setStato(StatoUser.CREATO);
-			userService.insert(user);
-			request.setAttribute("effettuato", "Registrazione avvenuta con successo, attendi la mail di confermata abilitazione!");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			for (User u : userService.findAll()) {
+				if (user.getUsername().equals(u.getUsername())) {
+					request.setAttribute("user", userDTO);
+					request.setAttribute("erroreUsername", "Questo username è gia stato utilizzato!");
+					request.getRequestDispatcher("registrazione.jsp").forward(request, response);
+					return;
+				} else {
+					user.setEsperienza(0);
+					user.setCredito(0);
+					user.setStato(StatoUser.CREATO);
+					userService.insert(user);
+					request.setAttribute("effettuato", "Registrazione avvenuta con successo, attendi la mail di confermata abilitazione!");
+					request.getRequestDispatcher("login.jsp").forward(request, response);
+				}
+			}
 		}
 	}
 

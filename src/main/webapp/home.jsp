@@ -1,8 +1,8 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-<%-- <c:if test= "${sessionScope.utenteSession == null || sessionScope.utenteSession.stato == 'INATTIVO'}"  >
-		<c:redirect url = "index.jsp"/>
-</c:if> --%>
+<c:if test= "${sessionScope.userSession == null || sessionScope.userSession.stato != 'ABILITATO'}"  >
+		<c:redirect url = "login.jsp"/>
+</c:if>
 
 <!doctype html>
 <html lang="it">
@@ -33,7 +33,7 @@
 	      <h1 class="display-3">Benvenuto in POKER SPRING DATA!</h1>
 	      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
 	      <p><a class="btn btn-primary btn-lg" href="ListaTavoliServlet" role="button">I miei tavoli &raquo;</a></p>
-	      <p><a class="btn btn-primary btn-lg" href="ListaLibriServlet" role="button">Play Management &raquo;</a></p>
+	      <p><a class="btn btn-primary btn-lg" href="PlayManagementServlet" role="button">Play Management &raquo;</a></p>
 	      <%-- <c:forEach var="ruolo" items="${sessionScope.utenteSession.ruoli}">
           <c:if test="${ruolo.codice == 'ADMIN'}"> --%>
 	      <p><a class="btn btn-primary btn-lg" href="ListaUtentiServlet" role="button">Gestione Amministrazione &raquo;</a></p>

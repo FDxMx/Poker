@@ -49,6 +49,7 @@
 		<div class='card'>
 		    <div class='card-header'>
 		    
+		    	<p style = color:red >${requestScope.erroreUsername}</p>
 		        <c:forEach items = "${requestScope.errori}" var = "errore">
 		        	<p style = color:red ><c:out value = "${errore}"></c:out> <br></p>
 		        </c:forEach>
@@ -88,6 +89,7 @@
 						</div>
 							
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Registrami!</button>
+						<a class="nav-link" href="login.jsp">...Torna alla log in <span class="sr-only">(current)</span></a>
 					</form>
 			<!-- end card-body -->			   
 		    </div>

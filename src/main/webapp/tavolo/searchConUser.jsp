@@ -22,13 +22,9 @@
 		    </div>
 		    <div class='card-body'>
 
-					<form id="form" method="post" action="ExecuteSearchTavoloServlet" novalidate="novalidate">
+					<form id="form" method="post" action="ExecuteSearchTavoloConUserServlet" novalidate="novalidate">
 					
 						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label>Esperienza Minima</label>
-								<input type="number" name="esperienzaMinima" id="esperienzaMinima" class="form-control" placeholder="Inserire l'esperienza minima" required>
-							</div>
 							
 							<div class="form-group col-md-6">
 								<label>Credito Minimo</label>
@@ -44,6 +40,17 @@
 								<label>Data Creazione</label>
 								<input type="date" class="form-control" name="dataCreazione" id="dataCreazione" placeholder="Inserire la data" required>
 							</div>
+							
+							<div class="form-group col-md-6">
+								<label>Giocatore</label>
+								<select id = "user" name = "user" class = "form-control" required>
+								<option value = ""> Cerca per giocatore</option>
+								<c:forEach items = "${requestScope.giocatori}" var = "user">
+								<option value ="${user.id}"/>
+								<c:out value = "${user.nome} ${user.cognome}" />
+								</c:forEach>
+								</select>
+							</div> 
 							
 						</div>
 							

@@ -8,6 +8,10 @@ public interface UserService {
 	
 	public void insert(User user);
 	
+	public void update(User user);
+	
+	public List<User> findAll();
+	
 	public User findById(Long idUser);
 	
 	public User findByUsernameAndPassword(String username, String password);

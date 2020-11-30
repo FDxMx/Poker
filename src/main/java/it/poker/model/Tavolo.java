@@ -49,6 +49,13 @@ public class Tavolo {
 		this.denominazione = denominazione;
 		this.dataCreazione = dataCreazione;
 	}
+	
+	public Tavolo(int creditoMinimo, String denominazione, Date dataCreazione) {
+		super();
+		this.creditoMinimo = creditoMinimo;
+		this.denominazione = denominazione;
+		this.dataCreazione = dataCreazione;
+	}
 
 	public Long getId() {
 		return id;

@@ -29,7 +29,7 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-     Accesso effettuato da: ${sessionScope.userSession.nome} ${sessionScope.userSession.cognome} come: 
+     Accesso effettuato da: ${sessionScope.userSession.nome} ${sessionScope.userSession.cognome}, EXP = ${sessionScope.userSession.esperienza}, CREDITO = ${sessionScope.userSession.credito}, come: 
      <c:forEach var="ruolo" items="${sessionScope.utenteSession.ruoli}">
 			<td><c:out value="${ruolo}" /></td>
 	 </c:forEach>
