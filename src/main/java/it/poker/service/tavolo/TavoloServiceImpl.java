@@ -110,7 +110,7 @@ public class TavoloServiceImpl implements TavoloService {
 			}
 		}
 		if (user != null) {
-			query += " and u.id = " + user.getId();
+			query += " and u.id = " + user.getId();    //NON FUNZIONA LA RICERCA PER GIOCATORE
 		}
 		
 		return entityManager.createQuery(query, Tavolo.class).getResultList();

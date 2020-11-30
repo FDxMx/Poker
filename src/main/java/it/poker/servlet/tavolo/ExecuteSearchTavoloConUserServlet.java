@@ -63,21 +63,14 @@ public class ExecuteSearchTavoloConUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			User user = request.getParameter("user") != null && !request.getParameter("user").equals("") ? userService.findById(Long.parseLong(request.getParameter("user"))) : null;
+		try {//NON FA LA RICERCA PER GIOCATORE
 			HttpSession session = request.getSession();
 			User userSession = (User) session.getAttribute("userSession");
-			Integer creditoMinimo = StringUtils.isNumeric(request.getParameter("creditoMinimo"))
-					? Integer.parseInt(request.getParameter("creditoMinimo"))
-					: 0;
-			String denominazione = StringUtils.isNotEmpty(request.getParameter("denominazione"))
-					? (request.getParameter("denominazione"))
-					: null;
-			Date dataCreazione = StringUtils.isNotEmpty(request.getParameter("dataCreazione"))
-					? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataCreazione"))
-					: null;
-			request.setAttribute("listaTavoli", tavoloService.findTavoloByExampleWithUser(
-					new Tavolo(creditoMinimo, denominazione, dataCreazione), user, userSession));
+			Integer creditoMinimo = StringUtils.isNumeric(request.getParameter("creditoMinimo")) ? Integer.parseInt(request.getParameter("creditoMinimo")) : 0;
+			String denominazione = StringUtils.isNotEmpty(request.getParameter("denominazione")) ? (request.getParameter("denominazione")) : null;
+			Date dataCreazione = StringUtils.isNotEmpty(request.getParameter("dataCreazione")) ? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataCreazione")) : null;
+			User user = request.getParameter("user") != null && !request.getParameter("user").equals("") ? userService.findById(Long.parseLong(request.getParameter("user"))) : null;		
+			request.setAttribute("listaTavoli", tavoloService.findTavoloByExampleWithUser(new Tavolo(creditoMinimo, denominazione, dataCreazione), user, userSession));
 			request.getRequestDispatcher("/tavolo/listaTavoliTotali.jsp").forward(request, response);
 		} catch (ParseException e) {
 			e.printStackTrace();

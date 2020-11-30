@@ -22,5 +22,6 @@ public interface TavoloService {
 	public List<Tavolo> findTavoloByExample(Tavolo tavolo, User user);
 	
 	public List<Tavolo> findTavoloByExampleWithUser(Tavolo tavolo, User user, User userSession);
+	
 
 }

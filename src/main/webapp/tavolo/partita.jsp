@@ -14,17 +14,17 @@
 	<jsp:include page="../navbar.jsp" />
 	
 	<main role="main" class="container">
-		
+		<p style = color:green >${requestScope.effettuato}</p>
 		<div class='card'>
 		    <div class='card-header'>
 		        <h5>Sei in gioco!</h5> 
-		        
+		        <p style = color:green >${requestScope.vincita}</p>
+		        <p style = color:red >${requestScope.perdita}</p>
+		        <p style = color:red >${requestScope.perditaTotale}</p>
 		    </div>
 		    <div class='card-body'>
 
 					<form method="get" novalidate="novalidate">
-					
-						<input type="hidden" name="id" id="id" value="${requestScope.id}">
 					
 						<button type="submit" name="submit" value="submit" id="submit" formaction="ExecutePartitaServlet" class="btn btn-primary">Punta</button>
 						<button type="submit" name="submit" value="submit" id="submit" formaction="LasciaPartitaServlet" class="btn btn-primary">Lascia</button>

@@ -27,11 +27,7 @@
 				<p style = color:blue >${requestScope.avvertimento}</p>
 				<p style = color:red >${requestScope.errore}</p>
 				<p style = color:green >${requestScope.effettuato}</p>
-				<%-- <c:forEach var="ruolo" items="${sessionScope.utenteSession.ruoli}">
-          		<c:if test="${ruolo.codice == 'ADMIN'}"> --%>
 				<a class="btn btn-primary " href="PrepareInsertTavoloServlet">Crea un Tavolo</a>
-				<%-- </c:if>
-       	 		</c:forEach> --%>
        	 		<a class="btn btn-primary " href="PrepareSearchTavoloConUserServlet">Search Tavolo</a>
 				
 			</div>
@@ -60,14 +56,7 @@
 									<td><c:out value="${tavolo.denominazione}" /></td>
 									<td><c:out value="${tavolo.dataCreazione}" /></td>
 									<td><c:out value="${tavolo.creatoreTavolo.nome} ${tavolo.creatoreTavolo.cognome}" /></td>
-									<td>
-										<%-- <c:forEach var="ruolo" items="${sessionScope.utenteSession.ruoli}">
-          								<c:if test="${ruolo.codice == 'ADMIN'}"> --%>
-										<a class="btn  btn-sm btn-outline-secondary"
-										href="PreparePartitaServlet?idParametro=${tavolo.id}">Gioca</a>
-										<%-- </c:if>
-       	 								</c:forEach> --%>
-									</td>
+									<td><a class="btn  btn-sm btn-outline-secondary" href="PreparePartitaServlet?idParametro=${tavolo.id}">Gioca</a></td>
 								</tr>
 							</c:forEach>
 

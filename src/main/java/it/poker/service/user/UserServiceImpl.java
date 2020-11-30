@@ -30,13 +30,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public List<User> findUserByTavolo(Long idTavolo) {
+	public List<User> findUserByTavolo(long idTavolo) {
 		return userRepository.findUserByTavolo(idTavolo);
 	}
 
 	@Override
 	@Transactional
-	public User findById(Long idUser) {
+	public User findById(long idUser) {
 		return userRepository.findById(idUser).orElse(null);
 	}
 
@@ -49,5 +49,5 @@ public class UserServiceImpl implements UserService {
 	public List<User> findAll() {
 		return (List<User>) userRepository.findAll();
 	}
-	
+
 }

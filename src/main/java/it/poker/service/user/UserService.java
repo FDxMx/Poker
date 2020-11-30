@@ -12,10 +12,10 @@ public interface UserService {
 	
 	public List<User> findAll();
 	
-	public User findById(Long idUser);
+	public User findById(long idUser);
 	
 	public User findByUsernameAndPassword(String username, String password);
 	
-	public List<User> findUserByTavolo(Long idTavolo);
+	public List<User> findUserByTavolo(long idTavolo);
 	
 }

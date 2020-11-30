@@ -13,6 +13,6 @@ public interface UserRepository extends CrudRepository<User, Long>,QueryByExampl
 	User findByUsernameAndPassword(String username, String password);
 	
 	@Query("FROM User u JOIN u.tavolo t WHERE t.id = ?1")
-	List<User> findUserByTavolo(Long idTavolo);
-
+	List<User> findUserByTavolo(long idTavolo);
+	
 }
