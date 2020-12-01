@@ -18,7 +18,7 @@
 				<div class='card-header'>
 				<p style = color:red >${requestScope.errore}</p>
 				<p style = color:green >${requestScope.effettuato}</p>
-       	 		<a class="btn btn-primary " href="PrepareSearchTavoloServlet">Search Users</a>
+       	 		<a class="btn btn-primary " href="PrepareSearchUserServlet">Search Users</a>
 			</div>
 			&nbsp;
 				<h5>Lista User</h5>
@@ -53,7 +53,7 @@
 										<a class="btn  btn-sm btn-outline-primary ml-2 mr-2"
 										href="PrepareUpdateUserServlet?idParametro=${user.id}">Aggiorna</a>
 										<a class="btn btn-outline-danger btn-sm"
-										href="PrepareDeleteTavoloServlet?idParametro=${user.id}">Disabilita</a>
+										href="Abilita_DisabilitaServlet?idParametro=${user.id}">Abilita/Disabilita</a>
 									</td>
 								</tr>
 							</c:forEach>

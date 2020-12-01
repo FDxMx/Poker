@@ -58,7 +58,7 @@ public class TavoloServiceImpl implements TavoloService {
 	
 	@Override
 	@Transactional
-	public List<Tavolo> findTavoloByExample(Tavolo tavolo, User user) {
+	public List<Tavolo> findTavoloByExample(Tavolo tavolo, User user) {//RIFARE
 		String query = "select t from Tavolo t join t.creatoreTavolo u where 1=1 ";
 		if (user != null) {
 			query += " and u.id = " + user.getId();
@@ -90,7 +90,7 @@ public class TavoloServiceImpl implements TavoloService {
 
 	@Override
 	@Transactional
-	public List<Tavolo> findTavoloByExampleWithUser(Tavolo tavolo, User user, User userSession) {
+	public List<Tavolo> findTavoloByExampleWithUser(Tavolo tavolo, User user, User userSession) {//RIFARE
 		String query = "select t from User u right join u.tavolo t where 1=1 ";
 		
 		if(userSession != null) {
@@ -103,14 +103,10 @@ public class TavoloServiceImpl implements TavoloService {
 			query += " and t.denominazione like '%" + tavolo.getDenominazione() + "%' ";
 		}
 		if (tavolo.getDataCreazione() != null) {
-			try {
-				query += " and t.dataCreazione = '" + new SimpleDateFormat("yyyy-MM-dd").parse(tavolo.getDataCreazione().toString()) + "'";
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			query += " and t.dataCreazione = '" + tavolo.getDataCreazione() + "'";
 		}
 		if (user != null) {
-			query += " and u.id = " + user.getId();    //NON FUNZIONA LA RICERCA PER GIOCATORE
+			query += " and u.id = " + user.getId(); 
 		}
 		
 		return entityManager.createQuery(query, Tavolo.class).getResultList();

@@ -49,7 +49,7 @@
 		    	</dl>
 		    	<dl class="row">
 				  <dt class="col-sm-3 text-right">Ruoli:</dt>
-				  <c:forEach var="ruolo" items="${requestScope.utente.ruoli}">
+				  <c:forEach var="ruolo" items="${requestScope.user.ruoli}">
 				  <c:out value = "${ruolo}" /> <br>
 				  </c:forEach>
 		    	</dl>

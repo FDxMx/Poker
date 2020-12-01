@@ -1,15 +1,11 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
 <c:if test= "${sessionScope.userSession == null || sessionScope.userSession.stato != 'ABILITATO'}"  >
 		<c:redirect url = "login.jsp"/>
 </c:if>
-
 <!doctype html>
 <html lang="it">
   <head>
-    
     <jsp:include page="./header.jsp" />
-    
     <!-- Custom styles for this template -->
     <link href="./assets/css/global.css" rel="stylesheet">
     <style type="text/css">
@@ -17,16 +13,11 @@
 		  padding-top: 3.5rem;
 		}	
     </style>
-    
     <title>Poker</title>
   </head>
   <body>
-  
 	<jsp:include page="./navbar.jsp"></jsp:include>
-  
-  
 	<main role="main">
-
 	  <!-- Main jumbotron for a primary marketing message or call to action -->
 	  <div class="jumbotron" >
 	    <div class="container">
@@ -34,14 +25,13 @@
 	      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
 	      <p><a class="btn btn-primary btn-lg" href="ListaTavoliServlet" role="button">I miei tavoli &raquo;</a></p>
 	      <p><a class="btn btn-primary btn-lg" href="PlayManagementServlet" role="button">Play Management &raquo;</a></p>
-	      <%-- <c:forEach var="ruolo" items="${sessionScope.utenteSession.ruoli}">
-          <c:if test="${ruolo.codice == 'ADMIN'}"> --%>
+	      <c:forEach var="ruolo" items="${sessionScope.userSession.ruoli}">
+          <c:if test="${ruolo == 'ADMIN_ROLE'}">
 	      <p><a class="btn btn-primary btn-lg" href="ListaUserServlet" role="button">Gestione Amministrazione &raquo;</a></p>
-	  	  <%-- </c:if>
-       	  </c:forEach> --%>
+	  	  </c:if>
+       	  </c:forEach>
 	    </div>
 	  </div>
-	  
 	  <div class="container">
 	    <!-- Example row of columns -->
 	    <div class="row">
@@ -61,13 +51,9 @@
 	        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
 	      </div>
 	    </div>
-	
 	    <hr>
-	
 	  </div> <!-- /container -->
-	
 	</main>
-	
 	<jsp:include page="./footer.jsp" />
   </body>
 </html>

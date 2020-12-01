@@ -77,7 +77,7 @@ public class ExecuteSearchTavoloServlet extends HttpServlet {
 					: null;
 			Date dataCreazione = StringUtils.isNotEmpty(request.getParameter("dataCreazione"))
 					? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataCreazione"))
-					: null;
+					: null;//NON FUNZIONAAAAA
 			request.setAttribute("listaTavoli", tavoloService.findTavoloByExample(
 					new Tavolo(esperienzaMinima, creditoMinimo, denominazione, dataCreazione), user));
 			request.getRequestDispatcher("/tavolo/listaTavoli.jsp").forward(request, response);

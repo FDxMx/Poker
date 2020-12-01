@@ -10,6 +10,7 @@ import it.poker.model.User;
 
 public interface UserRepository extends CrudRepository<User, Long>,QueryByExampleExecutor <User>{
 	
+	@Query("from User u left join fetch u.ruoli where u.username = ?1 and u.password = ?2")
 	User findByUsernameAndPassword(String username, String password);
 	
 	@Query("FROM User u JOIN u.tavolo t WHERE t.id = ?1")

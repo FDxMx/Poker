@@ -68,13 +68,13 @@ public class ExecuteSearchTavoloConUserServlet extends HttpServlet {
 			User userSession = (User) session.getAttribute("userSession");
 			Integer creditoMinimo = StringUtils.isNumeric(request.getParameter("creditoMinimo")) ? Integer.parseInt(request.getParameter("creditoMinimo")) : 0;
 			String denominazione = StringUtils.isNotEmpty(request.getParameter("denominazione")) ? (request.getParameter("denominazione")) : null;
-			Date dataCreazione = StringUtils.isNotEmpty(request.getParameter("dataCreazione")) ? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataCreazione")) : null;
+			Date dataCreazione = StringUtils.isNotEmpty(request.getParameter("dataCreazione")) ? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataCreazione").toString()) : null;
 			User user = request.getParameter("user") != null && !request.getParameter("user").equals("") ? userService.findById(Long.parseLong(request.getParameter("user"))) : null;		
 			request.setAttribute("listaTavoli", tavoloService.findTavoloByExampleWithUser(new Tavolo(creditoMinimo, denominazione, dataCreazione), user, userSession));
 			request.getRequestDispatcher("/tavolo/listaTavoliTotali.jsp").forward(request, response);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			System.out.println("LE DATEEEE!!!!!!");
+			System.out.println("LE DATEEEE!!!!!!");//NON FUNZIONAAAAA
 		}
 	}
 
