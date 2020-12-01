@@ -63,7 +63,7 @@ public class TavoloServiceImpl implements TavoloService {
 		if (user != null) {
 			query += " and u.id = " + user.getId();
 		}
-		if (tavolo.getEsperienzaMinima() > 0) {
+		if (tavolo.getEsperienzaMinima() > 0 && tavolo.getEsperienzaMinima() != null) {
 			query += " and t.esperienzaMinima = " + tavolo.getEsperienzaMinima();
 		}
 		if (tavolo.getCreditoMinimo() > 0) {

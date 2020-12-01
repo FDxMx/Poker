@@ -31,8 +31,8 @@ public class User {
 	private String password;
 	@Temporal(TemporalType.DATE)
 	private Date dataRegistrazione;
-	private int esperienza;
-	private int credito;
+	private Integer esperienza;
+	private Integer credito;
 	@Enumerated(EnumType.STRING)
 	private StatoUser stato;
 	@ElementCollection(targetClass = RuoloUser.class)
@@ -105,19 +105,19 @@ public class User {
 		this.dataRegistrazione = dataRegistrazione;
 	}
 
-	public int getEsperienza() {
+	public Integer getEsperienza() {
 		return esperienza;
 	}
 
-	public void setEsperienza(int esperienza) {
+	public void setEsperienza(Integer esperienza) {
 		this.esperienza = esperienza;
 	}
 
-	public int getCredito() {
+	public Integer getCredito() {
 		return credito;
 	}
 
-	public void setCredito(int credito) {
+	public void setCredito(Integer credito) {
 		this.credito = credito;
 	}
 
@@ -150,31 +150,4 @@ public class User {
 		return "id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", username=" + username
 				+ ", dataRegistrazione=" + dataRegistrazione + ", esperienza=" + esperienza + ", credito=" + credito;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-	
 }

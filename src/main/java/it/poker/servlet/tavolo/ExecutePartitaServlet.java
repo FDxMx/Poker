@@ -50,20 +50,15 @@ public class ExecutePartitaServlet extends HttpServlet {
 		User userSession = (User) session.getAttribute("userSession");
 		
 		int punteggio = (int)Math.floor(Math.random() * 100); 
-		if(punteggio < 49) {
-			punteggio = -punteggio;
-		}else if(punteggio > 49) {
-			punteggio = +punteggio;
-		}
 		
-		if(punteggio > 0) {
+		if(punteggio >= 49) {
 			userSession.setCredito(userSession.getCredito() + (int)punteggio);
 			userSession.setEsperienza(userSession.getEsperienza() + 20);
 			userService.update(userSession);
 			request.setAttribute("vincita", "HAI VINTO!!!");
 			request.getRequestDispatcher("/tavolo/partita.jsp").forward(request, response);
 			return;
-		}else if(punteggio < 0) {
+		}else if(punteggio < 49) {
 			int credito = userSession.getCredito() - (int)punteggio;
 			if(credito < 0) {
 				userSession.setCredito(0);

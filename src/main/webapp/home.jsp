@@ -36,7 +36,7 @@
 	      <p><a class="btn btn-primary btn-lg" href="PlayManagementServlet" role="button">Play Management &raquo;</a></p>
 	      <%-- <c:forEach var="ruolo" items="${sessionScope.utenteSession.ruoli}">
           <c:if test="${ruolo.codice == 'ADMIN'}"> --%>
-	      <p><a class="btn btn-primary btn-lg" href="ListaUtentiServlet" role="button">Gestione Amministrazione &raquo;</a></p>
+	      <p><a class="btn btn-primary btn-lg" href="ListaUserServlet" role="button">Gestione Amministrazione &raquo;</a></p>
 	  	  <%-- </c:if>
        	  </c:forEach> --%>
 	    </div>

@@ -18,4 +18,6 @@ public interface UserService {
 	
 	public List<User> findUserByTavolo(long idTavolo);
 	
+	public User findUserWithRuoli(long idUser);
+	
 }

@@ -28,7 +28,7 @@ public class UserDTO {
 		this.password = password;
 		this.dataRegistrazione = dataRegistrazione;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}

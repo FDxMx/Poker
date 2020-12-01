@@ -20,8 +20,8 @@ public class Tavolo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int esperienzaMinima;
-	private int creditoMinimo;
+	private Integer esperienzaMinima;
+	private Integer creditoMinimo;
 	private String denominazione;
 	@Temporal(TemporalType.DATE)
 	private Date dataCreazione;
@@ -65,19 +65,19 @@ public class Tavolo {
 		this.id = id;
 	}
 
-	public int getEsperienzaMinima() {
+	public Integer getEsperienzaMinima() {
 		return esperienzaMinima;
 	}
 
-	public void setEsperienzaMinima(int esperienzaMinima) {
+	public void setEsperienzaMinima(Integer esperienzaMinima) {
 		this.esperienzaMinima = esperienzaMinima;
 	}
 
-	public int getCreditoMinimo() {
+	public Integer getCreditoMinimo() {
 		return creditoMinimo;
 	}
 
-	public void setCreditoMinimo(int creditoMinimo) {
+	public void setCreditoMinimo(Integer creditoMinimo) {
 		this.creditoMinimo = creditoMinimo;
 	}
 

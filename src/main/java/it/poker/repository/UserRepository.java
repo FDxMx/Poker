@@ -15,4 +15,6 @@ public interface UserRepository extends CrudRepository<User, Long>,QueryByExampl
 	@Query("FROM User u JOIN u.tavolo t WHERE t.id = ?1")
 	List<User> findUserByTavolo(long idTavolo);
 	
+	@Query("FROM User u left join fetch u.ruoli WHERE u.id = ?1")
+	User findUserWithRuoli(long idUser);
 }
