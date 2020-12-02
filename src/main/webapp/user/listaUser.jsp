@@ -54,7 +54,7 @@
 										<a class="btn  btn-sm btn-outline-primary ml-2 mr-2"
 										href="PrepareUpdateUserServlet?idParametro=${user.id}">Aggiorna</a>
 										<a class="btn btn-outline-danger btn-sm"
-										href="Abilita_DisabilitaServlet?idParametro=${user.id}">Abilita/Disabilita</a>
+										href="PrepareAbilita_DisabilitaServlet?idParametro=${user.id}">Abilita/Disabilita</a>
 									</td>
 								</tr>
 							</c:forEach>

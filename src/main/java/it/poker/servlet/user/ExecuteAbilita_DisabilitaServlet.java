@@ -20,8 +20,8 @@ import it.poker.service.user.UserService;
 /**
  * Servlet implementation class Abilita_DisabilitaServlet
  */
-@WebServlet("/Abilita_DisabilitaServlet")
-public class Abilita_DisabilitaServlet extends HttpServlet {
+@WebServlet("/ExecuteAbilita_DisabilitaServlet")
+public class ExecuteAbilita_DisabilitaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
@@ -30,7 +30,7 @@ public class Abilita_DisabilitaServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Abilita_DisabilitaServlet() {
+	public ExecuteAbilita_DisabilitaServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -49,7 +49,7 @@ public class Abilita_DisabilitaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String idUser = request.getParameter("idParametro");
+		String idUser = request.getParameter("id");
 
 		if (idUser != null && !idUser.equals("")) {
 			User user = userService.findUserWithRuoli(Long.parseLong(idUser));
