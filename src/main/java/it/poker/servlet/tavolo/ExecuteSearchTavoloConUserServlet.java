@@ -63,18 +63,20 @@ public class ExecuteSearchTavoloConUserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {//NON FA LA RICERCA PER GIOCATORE
+		try {
 			HttpSession session = request.getSession();
 			User userSession = (User) session.getAttribute("userSession");
 			Integer creditoMinimo = StringUtils.isNumeric(request.getParameter("creditoMinimo")) ? Integer.parseInt(request.getParameter("creditoMinimo")) : 0;
 			String denominazione = StringUtils.isNotEmpty(request.getParameter("denominazione")) ? (request.getParameter("denominazione")) : null;
 			Date dataCreazione = StringUtils.isNotEmpty(request.getParameter("dataCreazione")) ? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataCreazione").toString()) : null;
-			User user = request.getParameter("user") != null && !request.getParameter("user").equals("") ? userService.findById(Long.parseLong(request.getParameter("user"))) : null;		
+			User user = request.getParameter("user") != null && !request.getParameter("user").equals("") ? userService.findById(Long.parseLong(request.getParameter("user"))) : null;
+			if(user != null && user.getTavolo() == null) {
+				request.setAttribute("avvertimento", "Questo user non sta giocando a nessun tavolo!");
+			}
 			request.setAttribute("listaTavoli", tavoloService.findTavoloByExampleWithUser(new Tavolo(creditoMinimo, denominazione, dataCreazione), user, userSession));
 			request.getRequestDispatcher("/tavolo/listaTavoliTotali.jsp").forward(request, response);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			System.out.println("LE DATEEEE!!!!!!");//NON FUNZIONAAAAA
 		}
 	}
 

@@ -56,6 +56,15 @@ public class User {
 		this.password = password;
 		this.dataRegistrazione = dataRegistrazione;
 	}
+	
+	public User(String nome, String cognome, String username, Date dataRegistrazione, StatoUser stato) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.username = username;
+		this.dataRegistrazione = dataRegistrazione;
+		this.stato = stato;
+	}
 
 	public Long getId() {
 		return id;

@@ -88,13 +88,13 @@ public class ExecuteUpdateUserServlet extends HttpServlet {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
+				List<RuoloUser> listaRuoli = new ArrayList<>();
 				if(ruoli != null) {
-					List<RuoloUser> listaRuoli = new ArrayList<>();
 					for (String ruolo : ruoli) {
 						listaRuoli.add(RuoloUser.valueOf(ruolo));
-						user.setRuoli(listaRuoli);
 					}
 				}
+				user.setRuoli(listaRuoli);
 				userService.update(user);
 				request.setAttribute("effettuato", "Aggiornamento effettuato!");
 				request.getRequestDispatcher("ListaUserServlet").forward(request, response);

@@ -2,6 +2,7 @@ package it.poker.service.user;
 
 import java.util.List;
 
+import it.poker.model.RuoloUser;
 import it.poker.model.User;
 
 public interface UserService {
@@ -19,5 +20,7 @@ public interface UserService {
 	public List<User> findUserByTavolo(long idTavolo);
 	
 	public User findUserWithRuoli(long idUser);
+	
+	public List<User> findUserByExample(User user, RuoloUser ruolo);
 	
 }

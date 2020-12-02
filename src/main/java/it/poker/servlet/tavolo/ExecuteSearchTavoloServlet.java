@@ -61,25 +61,15 @@ public class ExecuteSearchTavoloServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			HttpSession session = request.getSession();
-			User user = (User) session.getAttribute("userSession");
-			Integer esperienzaMinima = StringUtils.isNumeric(request.getParameter("esperienzaMinima"))
-					? Integer.parseInt(request.getParameter("esperienzaMinima"))
-					: 0;
-			Integer creditoMinimo = StringUtils.isNumeric(request.getParameter("creditoMinimo"))
-					? Integer.parseInt(request.getParameter("creditoMinimo"))
-					: 0;
-			String denominazione = StringUtils.isNotEmpty(request.getParameter("denominazione"))
-					? (request.getParameter("denominazione"))
-					: null;
-			Date dataCreazione = StringUtils.isNotEmpty(request.getParameter("dataCreazione"))
-					? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataCreazione"))
-					: null;//NON FUNZIONAAAAA
-			request.setAttribute("listaTavoli", tavoloService.findTavoloByExample(
-					new Tavolo(esperienzaMinima, creditoMinimo, denominazione, dataCreazione), user));
+			User userSession = (User) session.getAttribute("userSession");
+			Integer esperienzaMinima = StringUtils.isNumeric(request.getParameter("esperienzaMinima")) ? Integer.parseInt(request.getParameter("esperienzaMinima")) : 0;
+			Integer creditoMinimo = StringUtils.isNumeric(request.getParameter("creditoMinimo")) ? Integer.parseInt(request.getParameter("creditoMinimo")) : 0;
+			String denominazione = StringUtils.isNotEmpty(request.getParameter("denominazione")) ? (request.getParameter("denominazione")) : null;
+			Date dataCreazione = StringUtils.isNotEmpty(request.getParameter("dataCreazione")) ? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataCreazione")) : null;
+			request.setAttribute("listaTavoli", tavoloService.findTavoloByExample(new Tavolo(esperienzaMinima, creditoMinimo, denominazione, dataCreazione), userSession));
 			request.getRequestDispatcher("/tavolo/listaTavoli.jsp").forward(request, response);
 		} catch (ParseException e) {
 			e.printStackTrace();

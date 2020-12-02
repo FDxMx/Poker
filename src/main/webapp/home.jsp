@@ -23,7 +23,11 @@
 	    <div class="container">
 	      <h1 class="display-3">Benvenuto in POKER SPRING DATA!</h1>
 	      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+	      <c:forEach var="ruolo" items="${sessionScope.userSession.ruoli}">
+          <c:if test="${ruolo == 'ADMIN_ROLE' or ruolo == 'SPECIAL_PLAYER_ROLE'}">
 	      <p><a class="btn btn-primary btn-lg" href="ListaTavoliServlet" role="button">I miei tavoli &raquo;</a></p>
+	      </c:if>
+       	  </c:forEach>
 	      <p><a class="btn btn-primary btn-lg" href="PlayManagementServlet" role="button">Play Management &raquo;</a></p>
 	      <c:forEach var="ruolo" items="${sessionScope.userSession.ruoli}">
           <c:if test="${ruolo == 'ADMIN_ROLE'}">

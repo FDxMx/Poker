@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import it.poker.model.RuoloUser;
+import it.poker.model.StatoUser;
 import it.poker.model.User;
 
 public class UserDTO {
@@ -17,6 +19,8 @@ public class UserDTO {
 	private String username;
 	private String password;
 	private String dataRegistrazione;
+	private StatoUser stato;
+	private RuoloUser ruolo;
 	
 	public UserDTO() {}
 
@@ -27,6 +31,15 @@ public class UserDTO {
 		this.username = username;
 		this.password = password;
 		this.dataRegistrazione = dataRegistrazione;
+	}
+	
+	public UserDTO(String nome, String cognome, String dataRegistrazione, StatoUser stato, RuoloUser ruolo) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dataRegistrazione = dataRegistrazione;
+		this.stato = stato;
+		this.ruolo = ruolo;
 	}
 	
 	public Long getId() {
@@ -77,6 +90,22 @@ public class UserDTO {
 		this.dataRegistrazione = dataRegistrazione;
 	}
 	
+	public StatoUser getStato() {
+		return stato;
+	}
+
+	public void setStato(StatoUser stato) {
+		this.stato = stato;
+	}
+
+	public RuoloUser getRuolo() {
+		return ruolo;
+	}
+
+	public void setRuolo(RuoloUser ruolo) {
+		this.ruolo = ruolo;
+	}
+
 	public List<String> errors(){
 		List<String> result = new ArrayList<String>();
 		if(StringUtils.isBlank(this.nome))
@@ -89,6 +118,30 @@ public class UserDTO {
 			result.add("Il campo PASSWORD non può essere vuoto");
 		if(StringUtils.isBlank(this.dataRegistrazione))
 			result.add("Il campo DATA REGISTRAZIONE non può essere vuoto");
+		return result;
+	}
+	
+	public List<String> errorsSearch(){
+		List<String> result = new ArrayList<String>();
+		if(!StringUtils.isBlank(this.nome) && StringUtils.isNumeric(this.nome)) {
+			result.add("Il campo NOME non può contenere numeri");
+		}
+		if(!StringUtils.isBlank(this.cognome) && StringUtils.isNumeric(this.cognome)) {
+			result.add("Il campo COGNOME non può contenere numeri");
+		}
+		if(!StringUtils.isBlank(this.dataRegistrazione)) {
+			try {
+				new SimpleDateFormat("yyyy-MM-dd").parse(this.dataRegistrazione);
+			} catch (ParseException e) {
+				result.add("Il campo DATA REGISTRAZIONE non può essere vuoto");
+			}
+		}
+		if(this.stato != null && !StatoUser.listaEnum().contains(this.stato)) {
+			result.add("Lo STATO selezionato non esiste");
+		}
+		if(this.ruolo != null && !RuoloUser.listaEnum().contains(this.ruolo)) {
+			result.add("Il RUOLO selezionato non esiste");
+		}
 		return result;
 	}
 	

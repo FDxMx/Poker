@@ -1,6 +1,8 @@
 package it.poker.servlet.user;
 
 import java.io.IOException;
+
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,17 +23,17 @@ import it.poker.service.user.UserService;
 @WebServlet("/Abilita_DisabilitaServlet")
 public class Abilita_DisabilitaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private UserService userService;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Abilita_DisabilitaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Abilita_DisabilitaServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -42,18 +44,27 @@ public class Abilita_DisabilitaServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String idUser = request.getParameter("idParametro");
-		
-		if(idUser != null && !idUser.equals("")) {
-			User user = userService.findById(Long.parseLong(idUser));
-			if(user.getStato().equals(StatoUser.valueOf("CREATO")) || user.getStato().equals(StatoUser.valueOf("DISABILITATO"))) {
-				user.setStato(StatoUser.valueOf("ABILITATO"));
-				request.setAttribute("effettuato", "L'utente è stato abilitato!");
-			} else if (user.getStato().equals(StatoUser.valueOf("ABILITATO"))){
-				user.setStato(StatoUser.valueOf("DISABILITATO"));
+
+		if (idUser != null && !idUser.equals("")) {
+			User user = userService.findUserWithRuoli(Long.parseLong(idUser));
+			if (user.getStato().equals(StatoUser.CREATO) || user.getStato().equals(StatoUser.DISABILITATO)) {
+				if (user.getRuoli().size() > 0) {
+					user.setStato(StatoUser.ABILITATO);
+					request.setAttribute("effettuato", "L'utente è stato abilitato!");
+				} else if(user.getRuoli().size() < 1){
+					request.setAttribute("avvertimento", "Non puoi abilitare uno user senza assegnargli un ruolo!");
+					request.getRequestDispatcher("ListaUserServlet").forward(request, response);
+					return;
+				}
+			} else if (user.getStato().equals(StatoUser.ABILITATO)) {
+				user.setStato(StatoUser.DISABILITATO);
+				user.setTavolo(null);
 				request.setAttribute("effettuato", "L'utente è stato disabilitato!");
 			}
 			userService.update(user);
@@ -66,9 +77,11 @@ public class Abilita_DisabilitaServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

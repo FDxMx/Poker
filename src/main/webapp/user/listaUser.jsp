@@ -18,6 +18,7 @@
 				<div class='card-header'>
 				<p style = color:red >${requestScope.errore}</p>
 				<p style = color:green >${requestScope.effettuato}</p>
+				<p style = color:blue >${requestScope.avvertimento}</p>
        	 		<a class="btn btn-primary " href="PrepareSearchUserServlet">Search Users</a>
 			</div>
 			&nbsp;
@@ -32,7 +33,7 @@
 								<th>Username</th>
 								<th>Esperienza</th>
 								<th>Credito</th>
-								<th>Data Registrazione</th>
+								<th>Data Reg.</th>
 								<th>Stato</th>
 								<th>Azioni</th>
 							</tr>

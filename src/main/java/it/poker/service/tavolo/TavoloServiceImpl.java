@@ -1,11 +1,10 @@
 package it.poker.service.tavolo;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List; 
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -58,28 +57,43 @@ public class TavoloServiceImpl implements TavoloService {
 	
 	@Override
 	@Transactional
-	public List<Tavolo> findTavoloByExample(Tavolo tavolo, User user) {//RIFARE
+	public List<Tavolo> findTavoloByExample(Tavolo tavolo, User userSession) {
+		
 		String query = "select t from Tavolo t join t.creatoreTavolo u where 1=1 ";
-		if (user != null) {
-			query += " and u.id = " + user.getId();
+		
+		if (userSession != null) {
+			query += " and u.id = :id";
 		}
 		if (tavolo.getEsperienzaMinima() > 0 && tavolo.getEsperienzaMinima() != null) {
-			query += " and t.esperienzaMinima = " + tavolo.getEsperienzaMinima();
+			query += " and t.esperienzaMinima = :esperienzaMinima";
 		}
-		if (tavolo.getCreditoMinimo() > 0) {
-			query += " and t.creditoMinimo = " + tavolo.getCreditoMinimo();
+		if (tavolo.getCreditoMinimo() > 0 && tavolo.getCreditoMinimo() != null) {
+			query += " and t.creditoMinimo = :creditoMinimo";
 		}
 		if (StringUtils.isNotEmpty(tavolo.getDenominazione())) {
-			query += " and t.denominazione like '%" + tavolo.getDenominazione() + "%' ";
+			query += " and t.denominazione like :denominazione";
 		}
 		if (tavolo.getDataCreazione() != null) {
-			try {
-				query += " and t.dataCreazione = '" + new SimpleDateFormat("yyyy-MM-dd").parse(tavolo.getDataCreazione().toString()) + "'";
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			query += " and t.dataCreazione = :dataCreazione";
 		}
-		return entityManager.createQuery(query, Tavolo.class).getResultList();
+		TypedQuery<Tavolo> query2 = entityManager.createQuery(query, Tavolo.class);
+		
+		if (userSession != null) {
+			query2.setParameter("id", userSession.getId());
+		}
+		if (tavolo.getEsperienzaMinima() > 0 && tavolo.getEsperienzaMinima() != null) {
+			query2.setParameter("esperienzaMinima", tavolo.getEsperienzaMinima());
+		}
+		if (tavolo.getCreditoMinimo() > 0 && tavolo.getCreditoMinimo() != null) {
+			query2.setParameter("creditoMinimo", tavolo.getCreditoMinimo());
+		}
+		if (StringUtils.isNotEmpty(tavolo.getDenominazione())) {
+			query2.setParameter("denominazione","%" + tavolo.getDenominazione() + "%");
+		}
+		if (tavolo.getDataCreazione() != null) {
+			query2.setParameter("dataCreazione", tavolo.getDataCreazione());
+		}
+		return query2.getResultList();
 	}
 
 	@Override
@@ -90,26 +104,41 @@ public class TavoloServiceImpl implements TavoloService {
 
 	@Override
 	@Transactional
-	public List<Tavolo> findTavoloByExampleWithUser(Tavolo tavolo, User user, User userSession) {//RIFARE
+	public List<Tavolo> findTavoloByExampleWithUser(Tavolo tavolo, User user, User userSession) {
 		String query = "select t from User u right join u.tavolo t where 1=1 ";
 		
-		if(userSession != null) {
-			query += " and t.esperienzaMinima <= " + userSession.getEsperienza();
+		if (userSession != null) {
+			query += " and t.esperienzaMinima <= :esperienzaMinima";
 		}
-		if (tavolo.getCreditoMinimo() > 0) {
-			query += " and t.creditoMinimo = " + tavolo.getCreditoMinimo();
+		if (tavolo.getCreditoMinimo() > 0 && tavolo.getCreditoMinimo() != null) {
+			query += " and t.creditoMinimo = :creditoMinimo";
 		}
 		if (StringUtils.isNotEmpty(tavolo.getDenominazione())) {
-			query += " and t.denominazione like '%" + tavolo.getDenominazione() + "%' ";
+			query += " and t.denominazione like :denominazione";
 		}
 		if (tavolo.getDataCreazione() != null) {
-			query += " and t.dataCreazione = '" + tavolo.getDataCreazione() + "'";
+			query += " and t.dataCreazione = :dataCreazione";
 		}
 		if (user != null) {
-			query += " and u.id = " + user.getId(); 
+			query += " and u.id = :id"; 
 		}
+		TypedQuery<Tavolo> query2 = entityManager.createQuery(query, Tavolo.class);
 		
-		return entityManager.createQuery(query, Tavolo.class).getResultList();
+		if(userSession != null) {
+			query2.setParameter("esperienzaMinima", userSession.getEsperienza());
+		}
+		if (tavolo.getCreditoMinimo() > 0 && tavolo.getCreditoMinimo() != null) {
+			query2.setParameter("creditoMinimo", tavolo.getCreditoMinimo());
+		}
+		if (StringUtils.isNotEmpty(tavolo.getDenominazione())) {
+			query2.setParameter("denominazione", "%" + tavolo.getDenominazione() + "%");
+		}
+		if (tavolo.getDataCreazione() != null) {
+			query2.setParameter("dataCreazione", tavolo.getDataCreazione());
+		}
+		if (user != null) {
+			query2.setParameter("id", user.getId()); 
+		}
+		return query2.getResultList();
 	}
-
 }
