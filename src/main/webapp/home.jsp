@@ -1,7 +1,4 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<c:if test= "${sessionScope.userSession == null || sessionScope.userSession.stato != 'ABILITATO'}"  >
-		<c:redirect url = "login.jsp"/>
-</c:if>
 <!doctype html>
 <html lang="it">
   <head>
@@ -19,7 +16,6 @@
 	<jsp:include page="./navbar.jsp"></jsp:include>
 	<main role="main">
 	  <!-- Main jumbotron for a primary marketing message or call to action -->
-	  <div class="jumbotron" >
 	    <div class="container">
 	      <h1 class="display-3">Benvenuto in POKER SPRING DATA!</h1>
 	      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
@@ -35,7 +31,6 @@
 	  	  </c:if>
        	  </c:forEach>
 	    </div>
-	  </div>
 	  <div class="container">
 	    <!-- Example row of columns -->
 	    <div class="row">

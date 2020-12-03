@@ -53,13 +53,13 @@ public class UserSpecialPlayerFilter implements Filter {
 		
 		if (user == null || !user.getStato().equals(StatoUser.ABILITATO)) {
 			myRequest.setAttribute("errore", "Devi prima accedere!");
-			myRequest.getRequestDispatcher("login.jsp").forward(myRequest, myResponse);
+			myRequest.getRequestDispatcher("/login.jsp").forward(myRequest, myResponse);
 		} else {
 			for (RuoloUser ruolo : user.getRuoli()) {
 				if(ruolo.equals(RuoloUser.SPECIAL_PLAYER_ROLE)) {
 					myRequest.setAttribute("errore", "Non hai i permessi per questa operazione!!!");
 					session.invalidate();
-					myRequest.getRequestDispatcher("login.jsp").forward(myRequest, myResponse);
+					myRequest.getRequestDispatcher("/login.jsp").forward(myRequest, myResponse);
 				}
 			}
 		}

@@ -77,7 +77,7 @@ public class RegistrazioneUserServlet extends HttpServlet {
 		} else {
 			User user = UserDTO.buildModelFromDto(userDTO);
 			for (User u : userService.findAll()) {
-				if (user.getUsername().equals(u.getUsername())) {
+				if (user.getUsername().equalsIgnoreCase(u.getUsername())) {
 					request.setAttribute("user", userDTO);
 					request.setAttribute("erroreUsername", "Questo username è gia stato utilizzato!");
 					request.getRequestDispatcher("registrazione.jsp").forward(request, response);

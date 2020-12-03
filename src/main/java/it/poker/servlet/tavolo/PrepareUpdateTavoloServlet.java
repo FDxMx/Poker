@@ -13,6 +13,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import it.poker.model.Tavolo;
 import it.poker.service.tavolo.TavoloService;
+import it.poker.service.user.UserService;
 
 /**
  * Servlet implementation class PrepareUpdateTavoloServlet
@@ -20,17 +21,20 @@ import it.poker.service.tavolo.TavoloService;
 @WebServlet("/PrepareUpdateTavoloServlet")
 public class PrepareUpdateTavoloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private TavoloService tavoloService;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PrepareUpdateTavoloServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	@Autowired
+	private UserService userService;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public PrepareUpdateTavoloServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -41,15 +45,20 @@ public class PrepareUpdateTavoloServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String idTavolo = request.getParameter("idParametro");
-		
-		if(idTavolo == null || idTavolo.equals("")) {
+
+		if (idTavolo == null || idTavolo.equals("")) {
 			request.setAttribute("errore", "Nessun tavolo selezionato!");
 			request.getRequestDispatcher("ListaTavoliServlet").forward(request, response);
-		}else {
+		} else if (userService.findUserByTavolo(Long.parseLong(idTavolo)).size() > 0) {
+			request.setAttribute("errore", "Non puoi modificare un tavolo se ci sono dei giocatori seduti!");
+			request.getRequestDispatcher("ListaTavoliServlet").forward(request, response);
+		} else {
 			Tavolo tavolo = tavoloService.findById(Long.parseLong(idTavolo));
 			request.setAttribute("tavolo", tavolo);
 			request.getRequestDispatcher("/tavolo/update.jsp").forward(request, response);
@@ -57,9 +66,11 @@ public class PrepareUpdateTavoloServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

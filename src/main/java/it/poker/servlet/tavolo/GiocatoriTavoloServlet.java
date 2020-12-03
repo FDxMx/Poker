@@ -53,6 +53,9 @@ public class GiocatoriTavoloServlet extends HttpServlet {
 			request.getRequestDispatcher("ListaTavoliServlet").forward(request, response);
 		}else { 
 			List<User> giocatoriTavolo = userService.findUserByTavolo(Long.parseLong(idTavolo));
+			if(giocatoriTavolo.size() < 1) {
+				request.setAttribute("avvertimento", "Nessuno sta giocando a questo tavolo!");
+			}
 			request.setAttribute("giocatori", giocatoriTavolo);
 			request.getRequestDispatcher("/tavolo/giocatoriTavolo.jsp").forward(request, response);
 		}

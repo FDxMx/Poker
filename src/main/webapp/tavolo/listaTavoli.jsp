@@ -7,33 +7,20 @@
 <head>
 <jsp:include page="../header.jsp" />
 <title>Lista Tavoli</title>
-
 <!-- style per le pagine diverse dalla index -->
 <link href="./assets/css/global.css" rel="stylesheet">
-
 </head>
 <body>
 	<jsp:include page="../navbar.jsp" />
-
-    
 	<main role="main" class="container">
 		<div class='card'>
-			
 			<div class='card-body'>
-			
 				<div class='card-header'>
-				
-				
 				<p style = color:blue >${requestScope.avvertimento}</p>
 				<p style = color:red >${requestScope.errore}</p>
 				<p style = color:green >${requestScope.effettuato}</p>
-				<%-- <c:forEach var="ruolo" items="${sessionScope.utenteSession.ruoli}">
-          		<c:if test="${ruolo.codice == 'ADMIN'}"> --%>
 				<a class="btn btn-primary " href="PrepareInsertTavoloServlet">Crea un Tavolo</a>
-				<%-- </c:if>
-       	 		</c:forEach> --%>
        	 		<a class="btn btn-primary " href="PrepareSearchTavoloServlet">Search Tavolo</a>
-				
 			</div>
 			&nbsp;
 				<h5>I MIEI TAVOLI</h5>
@@ -51,7 +38,6 @@
 							</tr>
 						</thead>
 						<tbody>
-
 							<c:forEach var="tavolo" items="${requestScope.listaTavoli}">
 								<tr>
 									<td><c:out value="${tavolo.id}" /></td>
@@ -61,27 +47,12 @@
 									<td><c:out value="${tavolo.dataCreazione}" /></td>
 									<td><c:out value="${tavolo.creatoreTavolo.nome} ${tavolo.creatoreTavolo.cognome}" /></td>
 									<td>
-										<%-- <c:forEach var="ruolo" items="${sessionScope.utenteSession.ruoli}">
-          								<c:if test="${ruolo.codice == 'ADMIN'}"> --%>
 										<a class="btn  btn-sm btn-outline-secondary"
 										href="GiocatoriTavoloServlet?idParametro=${tavolo.id}">Giocatori</a>
-										<%-- </c:if>
-       	 								</c:forEach> --%>
-       	 								
-										<%-- <c:forEach var="ruolo" items="${sessionScope.utenteSession.ruoli}">
-          								<c:if test="${ruolo.codice == 'ADMIN'}"> --%>
 										<a class="btn  btn-sm btn-outline-primary ml-2 mr-2"
 										href="PrepareUpdateTavoloServlet?idParametro=${tavolo.id}">Aggiorna</a>
-										<%-- </c:if>
-       	 								</c:forEach> --%>
-										
-										<%-- <c:forEach var="ruolo" items="${sessionScope.utenteSession.ruoli}">
-          								<c:if test="${ruolo.codice == 'ADMIN'}"> --%>
 										<a class="btn btn-outline-danger btn-sm"
 										href="PrepareDeleteTavoloServlet?idParametro=${tavolo.id}">Elimina</a>
-										<%-- </c:if>
-       	 								</c:forEach> --%>
-									
 									</td>
 								</tr>
 							</c:forEach>
@@ -89,7 +60,6 @@
 						</tbody>
 					</table>
 				</div>
-
 				<!-- end card-body -->
 			</div>
 		</div>

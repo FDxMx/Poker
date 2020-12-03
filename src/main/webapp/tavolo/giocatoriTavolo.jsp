@@ -18,6 +18,7 @@
 				<div class='card-header'>
 			</div>
 			&nbsp;
+			<p style = color:blue >${requestScope.avvertimento}</p>
 				<h5>Lista Giocatori Nel Tavolo</h5>
 				<div class='table-responsive'>
 					<table class='table table-striped '>
@@ -44,7 +45,6 @@
 									<td><c:out value="${user.dataRegistrazione}" /></td>
 								</tr>
 							</c:forEach>
-
 						</tbody>
 					</table>
 				</div>

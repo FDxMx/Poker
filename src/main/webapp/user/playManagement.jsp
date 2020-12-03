@@ -25,9 +25,9 @@
 	      <c:if test="${sessionScope.userSession.tavolo == null}">
 	      <p><a class="btn btn-primary btn-lg" href="ListaTavoliTotaliServlet" role="button">Cerca partita &raquo;</a></p>
 	      </c:if>
-	      <%-- <c:if test="${sessionScope.userSession.tavolo != null}"> --%>
+	      <c:if test="${sessionScope.userSession.tavolo != null}">
 	   	  <p><a class="btn btn-primary btn-lg" href="RecuperaParitaServlet" role="button">Recupera partita &raquo;</a></p>
-	   	  <%-- </c:if> --%>
+	   	  </c:if>
 	   	  <p style = color:red >${requestScope.errore}</p>
 	    </div>
 	  </div>

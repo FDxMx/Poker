@@ -53,7 +53,7 @@ public class UserPlayerFilter implements Filter {
 		
 		if (user == null || !user.getStato().equals(StatoUser.ABILITATO)) {
 			myRequest.setAttribute("errore", "Devi prima accedere!");
-			myRequest.getRequestDispatcher("login.jsp").forward(myRequest, myResponse);
+			myRequest.getRequestDispatcher("/login.jsp").forward(myRequest, myResponse);
 		}
 		chain.doFilter(request, response);
 	}

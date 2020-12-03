@@ -15,6 +15,7 @@
 		    <c:forEach items = "${requestScope.errori}" var = "errore">
 		        	<p style = color:red ><c:out value = "${errore}"></c:out> <br></p>
 		        </c:forEach>
+		        <p style = color:blue >${requestScope.avvertimento}</p>
 		        <h5>Cerca User</h5> 
 		    </div>
 		    <div class='card-body'>

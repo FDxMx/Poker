@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import it.poker.dto.TavoloDTO;
 import it.poker.model.Tavolo;
 import it.poker.model.User;
 import it.poker.service.tavolo.TavoloService;
@@ -62,18 +64,38 @@ public class ExecuteSearchTavoloServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			HttpSession session = request.getSession();
-			User userSession = (User) session.getAttribute("userSession");
-			Integer esperienzaMinima = StringUtils.isNumeric(request.getParameter("esperienzaMinima")) ? Integer.parseInt(request.getParameter("esperienzaMinima")) : 0;
-			Integer creditoMinimo = StringUtils.isNumeric(request.getParameter("creditoMinimo")) ? Integer.parseInt(request.getParameter("creditoMinimo")) : 0;
-			String denominazione = StringUtils.isNotEmpty(request.getParameter("denominazione")) ? (request.getParameter("denominazione")) : null;
-			Date dataCreazione = StringUtils.isNotEmpty(request.getParameter("dataCreazione")) ? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataCreazione")) : null;
-			request.setAttribute("listaTavoli", tavoloService.findTavoloByExample(new Tavolo(esperienzaMinima, creditoMinimo, denominazione, dataCreazione), userSession));
-			request.getRequestDispatcher("/tavolo/listaTavoli.jsp").forward(request, response);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			System.out.println("LE DATEEEE!!!!!!");
+		HttpSession session = request.getSession();
+		User userSession = (User) session.getAttribute("userSession");
+		
+		String esperienzaMinimaString = request.getParameter("esperienzaMinima") != null && !request.getParameter("esperienzaMinima").equals("") ? request.getParameter("esperienzaMinima") : null;
+		String creditoMinimoString = request.getParameter("creditoMinimo") != null && !request.getParameter("creditoMinimo").equals("") ? request.getParameter("creditoMinimo") : null;
+		String denominazione = request.getParameter("denominazione") != null && !request.getParameter("denominazione").equals("") ? request.getParameter("denominazione") : null;
+		String dataCreazione = request.getParameter("dataCreazione") != null && !request.getParameter("dataCreazione").equals("") ? request.getParameter("dataCreazione") : null;
+
+		TavoloDTO tavoloDTO = new TavoloDTO(esperienzaMinimaString, creditoMinimoString, dataCreazione);
+		List<String> tavoloErrorsSearch = tavoloDTO.errorsSearch();
+		if(!tavoloErrorsSearch.isEmpty()) {
+			request.setAttribute("errori", tavoloErrorsSearch);
+			tavoloDTO.setDenominazione(denominazione);
+			request.setAttribute("tavolo", tavoloDTO);
+			request.getRequestDispatcher("PrepareSearchTavoloServlet").forward(request, response);
+			return;
+		}else {
+			Integer esperienzaMinima = esperienzaMinimaString != null ? Integer.parseInt(esperienzaMinimaString) : 0;
+			Integer creditoMinimo = creditoMinimoString != null ? Integer.parseInt(creditoMinimoString) : 0;
+			Date data;
+			try {
+				data = dataCreazione != null ? new SimpleDateFormat("yyyy-MM-dd").parse(dataCreazione) : null;
+				Tavolo tavolo = new Tavolo(esperienzaMinima, creditoMinimo, denominazione, data);
+				List<Tavolo> listaTavoli = tavoloService.findTavoloByExample(tavolo, userSession);
+				request.setAttribute("listaTavoli", listaTavoli);
+				if(listaTavoli.size() < 1) {
+					request.setAttribute("avvertimento", "Nessun risultato per questa ricerca!");
+				}
+				request.getRequestDispatcher("/tavolo/listaTavoli.jsp").forward(request, response);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

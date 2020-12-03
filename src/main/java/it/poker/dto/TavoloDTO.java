@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import it.poker.model.Tavolo;
+import it.poker.model.User;
 
 public class TavoloDTO {
 	
@@ -16,6 +17,7 @@ public class TavoloDTO {
 	private String creditoMinimo;
 	private String denominazione;
 	private String dataCreazione;
+	private User user;
 	
 	public TavoloDTO() {}
 
@@ -24,6 +26,19 @@ public class TavoloDTO {
 		this.esperienzaMinima = esperienzaMinima;
 		this.creditoMinimo = creditoMinimo;
 		this.denominazione = denominazione;
+		this.dataCreazione = dataCreazione;
+	}
+	
+	public TavoloDTO(String esperienzaMinima, String creditoMinimo, String dataCreazione) {
+		super();
+		this.esperienzaMinima = esperienzaMinima;
+		this.creditoMinimo = creditoMinimo;
+		this.dataCreazione = dataCreazione;
+	}
+	
+	public TavoloDTO(String creditoMinimo, String dataCreazione) {
+		super();
+		this.creditoMinimo = creditoMinimo;
 		this.dataCreazione = dataCreazione;
 	}
 
@@ -67,6 +82,14 @@ public class TavoloDTO {
 		this.dataCreazione = dataCreazione;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public List<String> errors(){
 		List<String> result = new ArrayList<String>();
 		if(StringUtils.isBlank(this.esperienzaMinima))
@@ -77,6 +100,39 @@ public class TavoloDTO {
 			result.add("Il campo DENOMINAZIONE non può essere vuoto");
 		if(StringUtils.isBlank(this.dataCreazione))
 			result.add("Il campo DATA CREAZIONE non può essere vuoto");
+		return result;
+	}
+	
+	public List<String> errorsSearch(){
+		List<String> result = new ArrayList<String>();
+		if(!StringUtils.isBlank(this.esperienzaMinima) && !StringUtils.isNumeric(this.esperienzaMinima)) {
+			result.add("Il campo ESPERIENZA MINIMA deve essere un numero!");
+		}
+		if(!StringUtils.isBlank(this.creditoMinimo) && !StringUtils.isNumeric(this.creditoMinimo)) {
+			result.add("Il campo CREDITO MINIMO deve essere un numero!");
+		}
+		if(!StringUtils.isBlank(this.dataCreazione)) {
+			try {
+				new SimpleDateFormat("yyyy-MM-dd").parse(this.dataCreazione);
+			} catch (ParseException e) {
+				result.add("Il campo DATA CREAZIONE non è valido!");
+			}
+		}
+		return result;
+	}
+	
+	public List<String> errorsSearchWithUser(){
+		List<String> result = new ArrayList<String>();
+		if(!StringUtils.isBlank(this.creditoMinimo) && !StringUtils.isNumeric(this.creditoMinimo)) {
+			result.add("Il campo CREDITO MINIMO deve essere un numero!");
+		}
+		if(!StringUtils.isBlank(this.dataCreazione)) {
+			try {
+				new SimpleDateFormat("yyyy-MM-dd").parse(this.dataCreazione);
+			} catch (ParseException e) {
+				result.add("Il campo DATA CREAZIONE non è valido!");
+			}
+		}
 		return result;
 	}
 	

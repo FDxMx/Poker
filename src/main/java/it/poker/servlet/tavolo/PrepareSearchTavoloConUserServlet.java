@@ -44,6 +44,7 @@ public class PrepareSearchTavoloConUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("giocatori", userService.findAll());
+		request.setAttribute("avvertimento", "Visualizzerai solo le partite a cui potrai partecipare!");
 		request.getRequestDispatcher("/tavolo/searchConUser.jsp").forward(request, response);
 	}
 
