@@ -10,6 +10,15 @@
 <!-- style per le pagine diverse dalla index -->
 <link href="./assets/css/global.css" rel="stylesheet">
 </head>
+<style>
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/b/1/5/517682.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
+	  </style>
 <body>
 	<jsp:include page="../navbar.jsp" />
 	<main role="main" class="container">
@@ -19,8 +28,8 @@
 				<p style = color:blue >${requestScope.avvertimento}</p>
 				<p style = color:red >${requestScope.errore}</p>
 				<p style = color:green >${requestScope.effettuato}</p>
-				<a class="btn btn-primary " href="PrepareInsertTavoloServlet">Crea un Tavolo</a>
-       	 		<a class="btn btn-primary " href="PrepareSearchTavoloServlet">Search Tavolo</a>
+				<a class="btn-lg btn-danger" href="PrepareInsertTavoloServlet">Crea un Tavolo</a>
+       	 		<a class="btn-lg btn-danger" href="PrepareSearchTavoloServlet">Search Tavolo</a>
 			</div>
 			&nbsp;
 				<h5>I MIEI TAVOLI</h5>

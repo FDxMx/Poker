@@ -5,6 +5,15 @@
 <!doctype html>
 <html lang="it">
 <head>
+<style>
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/8/7/b/517637.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
+	  </style>
 <jsp:include page="../header.jsp" />
 <title>Lista Tavoli</title>
 <!-- style per le pagine diverse dalla index -->
@@ -19,7 +28,7 @@
 				<p style = color:blue >${requestScope.avvertimento}</p>
 				<p style = color:red >${requestScope.errore}</p>
 				<p style = color:green >${requestScope.effettuato}</p>
-       	 		<a class="btn btn-primary " href="PrepareSearchTavoloConUserServlet">Search Tavolo</a>
+       	 		<a class="btn btn-danger " href="PrepareSearchTavoloConUserServlet">Search Tavolo</a>
 			</div>
 			&nbsp;
 				<h5>TAVOLI DISPONIBILI</h5>
@@ -45,7 +54,7 @@
 									<td><c:out value="${tavolo.denominazione}" /></td>
 									<td><c:out value="${tavolo.dataCreazione}" /></td>
 									<td><c:out value="${tavolo.creatoreTavolo.nome} ${tavolo.creatoreTavolo.cognome}" /></td>
-									<td><a class="btn  btn-sm btn-outline-secondary" href="PreparePartitaServlet?idParametro=${tavolo.id}">Gioca</a></td>
+									<td><a class="btn  btn-sm btn-outline-success" href="PreparePartitaServlet?idParametro=${tavolo.id}">Gioca</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

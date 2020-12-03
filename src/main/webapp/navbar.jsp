@@ -1,15 +1,15 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-danger">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
        <span class="navbar-toggler-icon"></span>
      </button>
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="home.jsp">Home <span class="sr-only">(current)</span></a>
+        <a style = "color: black" class="nav-link" href="home.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <a style = "color: black" class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="home.jsp">Home</a>
         </div>
@@ -22,7 +22,7 @@
 	 </c:forEach>
       &nbsp;
       &nbsp;
-      <button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary" formaction = "LogOutServlet" formmethod = "get">LOG OUT</button>
+      <button type="submit" name="submit" value="submit" id="submit" class="btn btn-secondary btn-sm btn-icon" formaction = "LogOutServlet" formmethod = "get">LOG OUT</button>
     </form>
   </div>
 </nav>

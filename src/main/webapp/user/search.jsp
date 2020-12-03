@@ -2,6 +2,19 @@
 <!doctype html>
 <html lang="it">
 <head>
+<style type="text/css">
+    	body {
+		  padding-top: 3.5rem;
+		}	
+	   @import url('https://fonts.googleapis.com/css?family=Numans');
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/6/4/7/517704.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
+    </style>
 	<jsp:include page="../header.jsp" />
 	<title>Cerca User</title>
 	<!-- style per le pagine diverse dalla index -->
@@ -58,7 +71,7 @@
 								</select>
 							</div>
 						</div>
-						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca!</button>
+						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-danger">Cerca!</button>
 					</form>
 			<!-- end card-body -->			   
 		    </div>

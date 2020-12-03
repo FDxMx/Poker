@@ -10,6 +10,19 @@
 <!-- style per le pagine diverse dalla index -->
 <link href="./assets/css/global.css" rel="stylesheet">
 </head>
+<style type="text/css">
+    	body {
+		  padding-top: 3.5rem;
+		}	
+	   @import url('https://fonts.googleapis.com/css?family=Numans');
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/6/4/7/517704.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
+    </style>
 <body>
 	<jsp:include page="../navbar.jsp" />
 	<main role="main" class="container">
@@ -19,7 +32,7 @@
 				<p style = color:red >${requestScope.errore}</p>
 				<p style = color:green >${requestScope.effettuato}</p>
 				<p style = color:blue >${requestScope.avvertimento}</p>
-       	 		<a class="btn btn-primary " href="PrepareSearchUserServlet">Search Users</a>
+       	 		<a class="btn btn-danger " href="PrepareSearchUserServlet">Search Users</a>
 			</div>
 			&nbsp;
 				<h5>Lista User</h5>

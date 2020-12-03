@@ -7,6 +7,15 @@
 	<!-- style per le pagine diverse dalla index -->
     <link href="./assets/css/global.css" rel="stylesheet">
 </head>
+<style>
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/b/1/5/517682.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
+	  </style>
 <body>
 	<jsp:include page="../navbar.jsp" />
 	<main role="main" class="container">
@@ -38,7 +47,7 @@
 								<input type="date" class="form-control" name="dataCreazione" id="dataCreazione" placeholder="Inserire la data" value = "${requestScope.tavolo.dataCreazione}" required>
 							</div>
 						</div>
-						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca!</button>
+						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-danger">Cerca!</button>
 					</form>
 			<!-- end card-body -->			   
 		    </div>

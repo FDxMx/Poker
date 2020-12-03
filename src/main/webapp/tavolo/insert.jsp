@@ -2,6 +2,15 @@
 <!doctype html>
 <html lang="it">
 <head>
+<style>
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/b/1/5/517682.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
+	  </style>
 	<jsp:include page="../header.jsp" />
 	<title>Crea Tavolo</title>
 	<!-- style per le pagine diverse dalla index -->
@@ -32,7 +41,7 @@
     });
     </script>
 </head>
-<body>
+<body >
 	<jsp:include page="../navbar.jsp" />
 	<main role="main" class="container">
 		<div class='card'>
@@ -62,7 +71,7 @@
 								<input type="date" class="form-control" name="dataCreazione" id="dataCreazione" placeholder="Inserire la data" value = "${requestScope.tavolo.dataCreazione}" required>
 							</div>
 						</div>
-						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Crea!</button>
+						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-danger">Crea!</button>
 					</form>
 			<!-- end card-body -->			   
 		    </div>

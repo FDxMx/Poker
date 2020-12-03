@@ -2,6 +2,15 @@
 <!doctype html>
 <html lang="it">
 <head>
+ <style>
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/8/7/b/517637.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
+	  </style>
 	<jsp:include page="../header.jsp" />
 	<title>Compra Credito</title>
 	<!-- style per le pagine diverse dalla index -->
@@ -39,7 +48,7 @@
 								<input type="number" name="credito" id="credito" class="form-control" placeholder="Inserire una cifra" required>
 							</div>
 						</div>
-						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Compra!</button>
+						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-danger">Compra!</button>
 					</form>
 			<!-- end card-body -->			   
 		    </div>

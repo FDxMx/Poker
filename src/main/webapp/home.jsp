@@ -9,49 +9,39 @@
     	body {
 		  padding-top: 3.5rem;
 		}	
+	   @import url('https://fonts.googleapis.com/css?family=Numans');
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/4/8/6/567374.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
     </style>
     <title>Poker</title>
   </head>
-  <body>
+  <body class="text-left">
 	<jsp:include page="./navbar.jsp"></jsp:include>
+	&nbsp;
+	&nbsp;
 	<main role="main">
 	  <!-- Main jumbotron for a primary marketing message or call to action -->
 	    <div class="container">
-	      <h1 class="display-3">Benvenuto in POKER SPRING DATA!</h1>
-	      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+	      <h1 style = "color: white" class="display-3">Benvenuto in<br> POKER SPRING DATA!</h1>
+	      &nbsp;
+		  &nbsp;
 	      <c:forEach var="ruolo" items="${sessionScope.userSession.ruoli}">
           <c:if test="${ruolo == 'ADMIN_ROLE' or ruolo == 'SPECIAL_PLAYER_ROLE'}">
-	      <p><a class="btn btn-primary btn-lg" href="ListaTavoliServlet" role="button">I miei tavoli &raquo;</a></p>
+	      <p><a class="btn btn-danger btn-lg" href="ListaTavoliServlet" role="button">I miei tavoli &raquo;</a></p>
 	      </c:if>
        	  </c:forEach>
-	      <p><a class="btn btn-primary btn-lg" href="PlayManagementServlet" role="button">Play Management &raquo;</a></p>
+	      <p><a class="btn btn-danger btn-lg" href="PlayManagementServlet" role="button">Play Management &raquo;</a></p>
 	      <c:forEach var="ruolo" items="${sessionScope.userSession.ruoli}">
           <c:if test="${ruolo == 'ADMIN_ROLE'}">
-	      <p><a class="btn btn-primary btn-lg" href="ListaUserServlet" role="button">Gestione Amministrazione &raquo;</a></p>
+	      <p><a class="btn btn-danger btn-lg" href="ListaUserServlet" role="button">Gestione Amministrazione &raquo;</a></p>
 	  	  </c:if>
        	  </c:forEach>
 	    </div>
-	  <div class="container">
-	    <!-- Example row of columns -->
-	    <div class="row">
-	      <div class="col-md-4">
-	        <h2>Heading</h2>
-	        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-	        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-	      </div>
-	      <div class="col-md-4">
-	        <h2>Heading</h2>
-	        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-	        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-	      </div>
-	      <div class="col-md-4">
-	        <h2>Heading</h2>
-	        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-	        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-	      </div>
-	    </div>
-	    <hr>
-	  </div> <!-- /container -->
 	</main>
 	<jsp:include page="./footer.jsp" />
   </body>

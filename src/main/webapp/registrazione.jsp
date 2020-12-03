@@ -2,6 +2,15 @@
 <!doctype html>
 <html lang="it">
 <head>
+<style>
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/c/a/a/567504.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
+	  </style>
 	<jsp:include page="./header.jsp" />
 	<title>Registrazione</title>
 	<!-- style per le pagine diverse dalla index -->
@@ -69,8 +78,8 @@
 								<input type="date" class="form-control" name="data" id="data" placeholder="Inserire la data" value = "${requestScope.user.dataRegistrazione}" required>
 							</div>
 						</div>
-						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Registrami!</button>
-						<a class="nav-link" href="login.jsp">...Torna alla log in <span class="sr-only">(current)</span></a>
+						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-danger">Registrami!</button>
+						<a style = "color: red" class="nav-link" href="login.jsp">...Torna alla log in <span class="sr-only">(current)</span></a>
 					</form>
 			<!-- end card-body -->			   
 		    </div>

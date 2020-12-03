@@ -2,6 +2,19 @@
 <!doctype html>
 <html lang="it">
 <head>
+<style type="text/css">
+    	body {
+		  padding-top: 3.5rem;
+		}	
+	   @import url('https://fonts.googleapis.com/css?family=Numans');
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/6/4/7/517704.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
+    </style>
 	<jsp:include page="../header.jsp" />
 	<title>Attiva/Disattiva User</title>
 	<!-- style per le pagine diverse dalla index -->
@@ -17,8 +30,8 @@
 		    <div class='card-body'>
 					<form method="get" novalidate="novalidate">
 						<input type="hidden" name="id" id="id" value="${requestScope.id}">
-						<button type="submit" name="submit" value="submit" id="submit" formaction="ExecuteAbilita_DisabilitaServlet" class="btn btn-primary">Conferma</button>
-						<button type="submit" name="submit" value="submit" id="submit" formaction="ListaUserServlet" class="btn btn-primary">Annulla</button>
+						<button type="submit" name="submit" value="submit" id="submit" formaction="ExecuteAbilita_DisabilitaServlet" class="btn btn-danger">Conferma</button>
+						<button type="submit" name="submit" value="submit" id="submit" formaction="ListaUserServlet" class="btn btn-danger">Annulla</button>
 					</form>
 			<!-- end card-body -->			   
 		    </div>

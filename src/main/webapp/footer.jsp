@@ -1,6 +1,6 @@
-<footer class="footer">
+<footer class="page-footer font-small special-color-dark pt-4">
   <div class="container">
-	  <p class="mb-0">&copy; Company 2017-2020</p>
+	  <p style = "color: white" class="mb-0">&copy; Company 2017-2020</p>
   </div>
 </footer>
     <!-- Optional JavaScript -->

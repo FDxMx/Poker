@@ -17,7 +17,6 @@
 	<meta name="msapplication-config" content="${pageContext.request.contextPath}/assets/img/favicons/browserconfig.xml">
 	<meta name="theme-color" content="#563d7c">
 	   <style>
-	   @import url('https://fonts.googleapis.com/css?family=Numans');
 	   html,body{
        background-image: url('http://getwallpapers.com/wallpaper/full/c/a/a/567504.jpg');
 	   background-size: cover;
@@ -65,12 +64,14 @@
 		  &nbsp;
 		  <label for="inputPassword" class="sr-only">Password</label>
 		  <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+		  &nbsp;
+		  &nbsp;
 		  <div class="checkbox mb-3">
 		    <label>
+		    <button id="submit" class="btn btn-danger btn-lg btn-icon" type="submit" name="submit" value="submit">Sign in</button>
 		      <!-- <input type="checkbox" value="remember-me"> Remember me -->
 		    </label>
 		  </div>
-		  <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="submit">Sign in</button>
 		  <a style = "color: red" class="nav-link" href="registrazione.jsp">Non sono registrato... <span class="sr-only">(current)</span></a>
 		  <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
 		</form>	

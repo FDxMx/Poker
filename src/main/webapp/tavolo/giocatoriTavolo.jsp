@@ -5,6 +5,15 @@
 <!doctype html>
 <html lang="it">
 <head>
+<style>
+	   html,body{
+       background-image: url('http://getwallpapers.com/wallpaper/full/b/1/5/517682.jpg');
+	   background-size: cover;
+	   background-repeat: no-repeat;
+	   height: 100%;
+	   font-family: 'Numans', sans-serif;
+	   }
+	  </style>
 <jsp:include page="../header.jsp" />
 <title>Lista Giocatori</title>
 <!-- style per le pagine diverse dalla index -->
