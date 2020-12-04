@@ -75,7 +75,14 @@ public class ExecuteUpdateUserServlet extends HttpServlet {
 			List<String> userErrors = userDTO.errors();
 			if(!userErrors.isEmpty()) {
 				request.setAttribute("errori", userErrors);
-				request.setAttribute("user", user);
+				List<RuoloUser> listaRuoli = new ArrayList<>();
+				for (String ruolo : ruoli) {
+					listaRuoli.add(RuoloUser.valueOf(ruolo));
+				}
+				userDTO.setId(user.getId());
+				userDTO.setRuoli(listaRuoli);
+				userDTO.setStato(user.getStato());
+				request.setAttribute("user", userDTO);
 				request.setAttribute("listaRuoli", RuoloUser.listaEnum());
 				request.getRequestDispatcher("/user/update.jsp").forward(request, response);
 				return;

@@ -22,7 +22,9 @@
 		<div class='card'>
 		    <div class='card-header'>
 		        <h5>Cerca un tavolo</h5> 
-		        <p style = color:blue >${requestScope.avvertimento}</p>
+		        <div class="alert alert-primary  ${requestScope.avvertimento == null?'d-none':''}" role="alert">
+		 		 ${requestScope.avvertimento}
+		 	 	</div>
 		    </div>
 		    <div class='card-body'>
 					<form id="form" method="post" action="ExecuteSearchTavoloConUserServlet" novalidate="novalidate">

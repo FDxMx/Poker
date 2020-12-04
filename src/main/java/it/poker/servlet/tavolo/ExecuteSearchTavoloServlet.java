@@ -1,9 +1,6 @@
 package it.poker.servlet.tavolo;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.Servlet;
@@ -72,30 +69,21 @@ public class ExecuteSearchTavoloServlet extends HttpServlet {
 		String denominazione = request.getParameter("denominazione") != null && !request.getParameter("denominazione").equals("") ? request.getParameter("denominazione") : null;
 		String dataCreazione = request.getParameter("dataCreazione") != null && !request.getParameter("dataCreazione").equals("") ? request.getParameter("dataCreazione") : null;
 
-		TavoloDTO tavoloDTO = new TavoloDTO(esperienzaMinimaString, creditoMinimoString, dataCreazione);
+		TavoloDTO tavoloDTO = new TavoloDTO(esperienzaMinimaString, creditoMinimoString, denominazione, dataCreazione);
 		List<String> tavoloErrorsSearch = tavoloDTO.errorsSearch();
 		if(!tavoloErrorsSearch.isEmpty()) {
 			request.setAttribute("errori", tavoloErrorsSearch);
-			tavoloDTO.setDenominazione(denominazione);
 			request.setAttribute("tavolo", tavoloDTO);
 			request.getRequestDispatcher("PrepareSearchTavoloServlet").forward(request, response);
 			return;
 		}else {
-			Integer esperienzaMinima = esperienzaMinimaString != null ? Integer.parseInt(esperienzaMinimaString) : 0;
-			Integer creditoMinimo = creditoMinimoString != null ? Integer.parseInt(creditoMinimoString) : 0;
-			Date data;
-			try {
-				data = dataCreazione != null ? new SimpleDateFormat("yyyy-MM-dd").parse(dataCreazione) : null;
-				Tavolo tavolo = new Tavolo(esperienzaMinima, creditoMinimo, denominazione, data);
+			Tavolo tavolo = TavoloDTO.buildModelFromDto(tavoloDTO);
 				List<Tavolo> listaTavoli = tavoloService.findTavoloByExample(tavolo, userSession);
 				request.setAttribute("listaTavoli", listaTavoli);
 				if(listaTavoli.size() < 1) {
 					request.setAttribute("avvertimento", "Nessun risultato per questa ricerca!");
 				}
 				request.getRequestDispatcher("/tavolo/listaTavoli.jsp").forward(request, response);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 }

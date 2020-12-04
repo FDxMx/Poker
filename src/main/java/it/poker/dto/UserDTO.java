@@ -21,6 +21,7 @@ public class UserDTO {
 	private String dataRegistrazione;
 	private StatoUser stato;
 	private RuoloUser ruolo;
+	private List<RuoloUser> ruoli;
 	
 	public UserDTO() {}
 
@@ -33,10 +34,11 @@ public class UserDTO {
 		this.dataRegistrazione = dataRegistrazione;
 	}
 	
-	public UserDTO(String nome, String cognome, String dataRegistrazione, StatoUser stato, RuoloUser ruolo) {
+	public UserDTO(String nome, String cognome, String username, String dataRegistrazione, StatoUser stato, RuoloUser ruolo) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
+		this.username = username;
 		this.dataRegistrazione = dataRegistrazione;
 		this.stato = stato;
 		this.ruolo = ruolo;
@@ -105,6 +107,14 @@ public class UserDTO {
 	public void setRuolo(RuoloUser ruolo) {
 		this.ruolo = ruolo;
 	}
+	
+	public List<RuoloUser> getRuoli() {
+		return ruoli;
+	}
+
+	public void setRuoli(List<RuoloUser> ruoli) {
+		this.ruoli = ruoli;
+	}
 
 	public List<String> errors(){
 		List<String> result = new ArrayList<String>();
@@ -118,6 +128,13 @@ public class UserDTO {
 			result.add("Il campo PASSWORD non può essere vuoto");
 		if(StringUtils.isBlank(this.dataRegistrazione))
 			result.add("Il campo DATA REGISTRAZIONE non può essere vuoto");
+		if(!StringUtils.isBlank(this.dataRegistrazione)) {
+			try {
+				new SimpleDateFormat("yyyy-MM-dd").parse(this.dataRegistrazione);
+			} catch (ParseException e) {
+				result.add("Il campo DATA REGISTRAZIONE non è valido!");
+			}
+		}
 		return result;
 	}
 	
@@ -148,15 +165,15 @@ public class UserDTO {
 	public static User buildModelFromDto(UserDTO userDTO) {
 		User user = new User();
 		user.setId(userDTO.getId());
-		user.setNome(userDTO.getNome());
-		user.setCognome(userDTO.getCognome());
+		user.setNome(userDTO.getNome() != null && !userDTO.getNome().equals("") ? userDTO.getNome() : null);
+		user.setCognome(userDTO.getCognome() != null && !userDTO.getCognome().equals("") ? userDTO.getCognome() : null);
 		user.setUsername(userDTO.getUsername());
 		user.setPassword(userDTO.getPassword());
+		user.setStato(userDTO.getStato());
 		try {
-			user.setDataRegistrazione(new SimpleDateFormat("yyyy-MM-dd").parse(userDTO.getDataRegistrazione()));
+			user.setDataRegistrazione(userDTO.getDataRegistrazione() != null && !userDTO.getDataRegistrazione().equals("") ? new SimpleDateFormat("yyyy-MM-dd").parse(userDTO.getDataRegistrazione()) : null);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			System.out.println("LE DATEEEE!!!!!!");
 		}
 		return user;
 	}

@@ -56,8 +56,12 @@
           <div class="card-body">
             <form id = "form" class="form-signin" action="LogInServlet" method="post" novalidate = "novalidate">
 		  <img class="mb-4" src="${pageContext.request.contextPath}/assets/brand/straight-poker.svg" alt="" width="72" height="72"><br>
-		  <p style = color:red >${requestScope.errore}</p>
-		  <p style = color:green >${requestScope.effettuato}</p>
+		  <div class="alert alert-danger  ${requestScope.errore == null?'d-none':''}" role="alert">
+		  ${requestScope.errore}
+		  </div>
+		  <div class="alert alert-success  ${requestScope.effettuato == null ?'d-none':''}" role="alert">
+		  ${requestScope.effettuato}
+		  </div>
 		  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 		  <label for="inputUsername" class="sr-only">Username</label>
 		  <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>

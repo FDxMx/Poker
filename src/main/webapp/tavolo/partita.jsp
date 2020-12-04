@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="it">
 <head>
+
 <style>
 	   html,body{
        background-image: url('http://getwallpapers.com/wallpaper/full/5/9/c/518758.jpg');
@@ -22,10 +23,18 @@
 		<div class='card'>
 		    <div class='card-header'>
 		        <h5>Sei in gioco!</h5> 
-		        <p style = color:green >${requestScope.effettuato}</p>
-		        <p style = color:green >${requestScope.vincita}</p>
-		        <p style = color:red >${requestScope.perdita}</p>
-		        <p style = color:red >${requestScope.perditaTotale}</p>
+		        <div class="alert alert-success  ${requestScope.effettuato == null ?'d-none':''}" role="alert">
+		  		${requestScope.effettuato}
+		  		</div>
+		        <div class="alert alert-success  ${requestScope.vincita == null ?'d-none':''}" role="alert">
+		  		${requestScope.vincita}
+		  		</div>
+		        <div class="alert alert-danger  ${requestScope.perdita == null?'d-none':''}" role="alert">
+		 		 ${requestScope.perdita}
+		  		</div>
+		        <div class="alert alert-danger  ${requestScope.perditaTotale == null?'d-none':''}" role="alert">
+		 		 ${requestScope.perditaTotale}
+		  		</div>
 		    </div>
 		    <div class='card-body'>
 					<form method="get" novalidate="novalidate">

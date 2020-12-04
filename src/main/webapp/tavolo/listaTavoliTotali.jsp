@@ -25,9 +25,15 @@
 		<div class='card'>
 			<div class='card-body'>
 				<div class='card-header'>
-				<p style = color:blue >${requestScope.avvertimento}</p>
-				<p style = color:red >${requestScope.errore}</p>
-				<p style = color:green >${requestScope.effettuato}</p>
+				<div class="alert alert-primary  ${requestScope.avvertimento == null?'d-none':''}" role="alert">
+		 		 ${requestScope.avvertimento}
+		 	 	</div>
+				<div class="alert alert-danger  ${requestScope.errore == null?'d-none':''}" role="alert">
+		 		 ${requestScope.errore}
+		  		</div>
+				<div class="alert alert-success  ${requestScope.effettuato == null ?'d-none':''}" role="alert">
+		  		${requestScope.effettuato}
+		  		</div>
        	 		<a class="btn btn-danger " href="PrepareSearchTavoloConUserServlet">Search Tavolo</a>
 			</div>
 			&nbsp;

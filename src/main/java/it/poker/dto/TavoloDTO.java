@@ -36,12 +36,6 @@ public class TavoloDTO {
 		this.dataCreazione = dataCreazione;
 	}
 	
-	public TavoloDTO(String creditoMinimo, String dataCreazione) {
-		super();
-		this.creditoMinimo = creditoMinimo;
-		this.dataCreazione = dataCreazione;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -121,32 +115,31 @@ public class TavoloDTO {
 		return result;
 	}
 	
-	public List<String> errorsSearchWithUser(){
-		List<String> result = new ArrayList<String>();
-		if(!StringUtils.isBlank(this.creditoMinimo) && !StringUtils.isNumeric(this.creditoMinimo)) {
-			result.add("Il campo CREDITO MINIMO deve essere un numero!");
-		}
-		if(!StringUtils.isBlank(this.dataCreazione)) {
-			try {
-				new SimpleDateFormat("yyyy-MM-dd").parse(this.dataCreazione);
-			} catch (ParseException e) {
-				result.add("Il campo DATA CREAZIONE non è valido!");
-			}
-		}
-		return result;
-	}
+//	public List<String> errorsSearchWithUser(){
+//		List<String> result = new ArrayList<String>();
+//		if(!StringUtils.isBlank(this.creditoMinimo) && !StringUtils.isNumeric(this.creditoMinimo)) {
+//			result.add("Il campo CREDITO MINIMO deve essere un numero!");
+//		}
+//		if(!StringUtils.isBlank(this.dataCreazione)) {
+//			try {
+//				new SimpleDateFormat("yyyy-MM-dd").parse(this.dataCreazione);
+//			} catch (ParseException e) {
+//				result.add("Il campo DATA CREAZIONE non è valido!");
+//			}
+//		}
+//		return result;
+//	}
 	
 	public static Tavolo buildModelFromDto(TavoloDTO tavoloDTO) {
 		Tavolo tavolo = new Tavolo();
 		tavolo.setId(tavoloDTO.getId());
-		tavolo.setEsperienzaMinima(Integer.parseInt(tavoloDTO.getEsperienzaMinima()));
-		tavolo.setCreditoMinimo(Integer.parseInt(tavoloDTO.getCreditoMinimo()));
+		tavolo.setEsperienzaMinima(tavoloDTO.getEsperienzaMinima() != null && !tavoloDTO.getEsperienzaMinima().equals("") ? Integer.parseInt(tavoloDTO.getEsperienzaMinima()) : 0);
+		tavolo.setCreditoMinimo(tavoloDTO.getCreditoMinimo() != null && !tavoloDTO.getCreditoMinimo().equals("") ? Integer.parseInt(tavoloDTO.getCreditoMinimo()) : 0);
 		tavolo.setDenominazione(tavoloDTO.getDenominazione());
 		try {
-			tavolo.setDataCreazione(new SimpleDateFormat("yyyy-MM-dd").parse(tavoloDTO.getDataCreazione()));
+			tavolo.setDataCreazione(tavoloDTO.getDataCreazione() != null && !tavoloDTO.getDataCreazione().equals("") ? new SimpleDateFormat("yyyy-MM-dd").parse(tavoloDTO.getDataCreazione()) : null);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			System.out.println("LE DATEEEE!!!!!!");
 		}
 		return tavolo;
 	}

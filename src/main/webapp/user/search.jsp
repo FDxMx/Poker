@@ -6,7 +6,6 @@
     	body {
 		  padding-top: 3.5rem;
 		}	
-	   @import url('https://fonts.googleapis.com/css?family=Numans');
 	   html,body{
        background-image: url('http://getwallpapers.com/wallpaper/full/6/4/7/517704.jpg');
 	   background-size: cover;
@@ -26,7 +25,9 @@
 		<div class='card'>
 		    <div class='card-header'>
 		    <c:forEach items = "${requestScope.errori}" var = "errore">
-		        	<p style = color:red ><c:out value = "${errore}"></c:out> <br></p>
+		        	<div class="alert alert-danger  ${errore == null?'d-none':''}" role="alert">
+		  			${errore}
+		  			</div>
 		        </c:forEach>
 		        <p style = color:blue >${requestScope.avvertimento}</p>
 		        <h5>Cerca User</h5> 

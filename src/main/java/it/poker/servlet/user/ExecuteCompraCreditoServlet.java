@@ -61,7 +61,7 @@ public class ExecuteCompraCreditoServlet extends HttpServlet {
 		
 		String credito = request.getParameter("credito");
 		
-		if (credito != null && !credito.equals("") && StringUtils.isNumeric(credito)) {
+		if (credito != null && !credito.equals("") && StringUtils.isNumeric(credito) && Integer.parseInt(credito) > 0) {
 			User user = (User)session.getAttribute("userSession");
 			user.setCredito(user.getCredito() + Integer.parseInt(credito));
 			userService.update(user);

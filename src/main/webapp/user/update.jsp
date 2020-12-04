@@ -6,7 +6,6 @@
     	body {
 		  padding-top: 3.5rem;
 		}	
-	   @import url('https://fonts.googleapis.com/css?family=Numans');
 	   html,body{
        background-image: url('http://getwallpapers.com/wallpaper/full/6/4/7/517704.jpg');
 	   background-size: cover;
@@ -19,7 +18,7 @@
 	<title>Aggiorna User</title>
 	<!-- style per le pagine diverse dalla index -->
     <link href="./assets/css/global.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
     	$("#form").submit(function( event ) {
@@ -43,7 +42,7 @@
       	    }
     	});
     });
-    </script>
+    </script> -->
 </head>
 <body>
 	<jsp:include page="../navbar.jsp" />
@@ -51,7 +50,9 @@
 		<div class='card'>
 		    <div class='card-header'>
 		    	<c:forEach items = "${requestScope.errori}" var = "errore">
-		        	<p style = color:red ><c:out value = "${errore}"></c:out> <br></p>
+		        	<div class="alert alert-danger  ${errore == null?'d-none':''}" role="alert">
+		  			${errore}
+		  			</div>
 		        </c:forEach>
 		        <h5>Aggiorna User</h5> 
 		    </div>

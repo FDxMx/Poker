@@ -27,7 +27,9 @@
 				<div class='card-header'>
 			</div>
 			&nbsp;
-			<p style = color:blue >${requestScope.avvertimento}</p>
+			<div class="alert alert-primary  ${requestScope.avvertimento == null?'d-none':''}" role="alert">
+		 	 ${requestScope.avvertimento}
+		 	 </div>
 				<h5>Lista Giocatori Nel Tavolo</h5>
 				<div class='table-responsive'>
 					<table class='table table-striped '>

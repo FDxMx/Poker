@@ -9,7 +9,6 @@
     	body {
 		  padding-top: 3.5rem;
 		}	
-	   @import url('https://fonts.googleapis.com/css?family=Numans');
 	   html,body{
        background-image: url('http://getwallpapers.com/wallpaper/full/4/8/6/567374.jpg');
 	   background-size: cover;

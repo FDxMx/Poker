@@ -1,9 +1,6 @@
 package it.poker.servlet.user;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.Servlet;
@@ -67,30 +64,21 @@ public class ExecuteSearchUserServlet extends HttpServlet {
 		StatoUser stato = request.getParameter("stato") != null && !request.getParameter("stato").equals("") ? StatoUser.valueOf(request.getParameter("stato")) : null;
 		RuoloUser ruolo = request.getParameter("ruolo") != null && !request.getParameter("ruolo").equals("") ? RuoloUser.valueOf(request.getParameter("ruolo")) : null;
 		
-		UserDTO userDTO = new UserDTO (nome, cognome, dataRegistrazione, stato, ruolo);
+		UserDTO userDTO = new UserDTO (nome, cognome, username, dataRegistrazione, stato, ruolo);
 		List<String> userErrorsSearch = userDTO.errorsSearch();
 		if(!userErrorsSearch.isEmpty()) {
 			request.setAttribute("errori", userErrorsSearch);
-			userDTO.setUsername(username);
-			userDTO.setStato(stato);
-			userDTO.setRuolo(ruolo);
 			request.setAttribute("user", userDTO);
 			request.getRequestDispatcher("PrepareSearchUserServlet").forward(request, response);
 			return;
 		}else {
-			Date data;
-			try {
-				data = dataRegistrazione != null ? new SimpleDateFormat("yyyy-MM-dd").parse(dataRegistrazione) : null;
-				List<User> listaUser = userService.findUserByExample(new User(nome, cognome, username, data, stato), ruolo);
+				User user = UserDTO.buildModelFromDto(userDTO);
+				List<User> listaUser = userService.findUserByExample(user, ruolo);
 				request.setAttribute("listaUser", listaUser);
 				if(listaUser.size() < 1) {
 					request.setAttribute("avvertimento", "Nessun risultato per questa ricerca!");
 				}
 				request.getRequestDispatcher("/user/listaUser.jsp").forward(request, response);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
 		}
 	}
 

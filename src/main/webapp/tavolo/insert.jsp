@@ -47,7 +47,9 @@
 		<div class='card'>
 		    <div class='card-header'>
 		        <c:forEach items = "${requestScope.errori}" var = "errore">
-		        	<p style = color:red ><c:out value = "${errore}"></c:out> <br></p>
+		        	<div class="alert alert-danger  ${errore == null?'d-none':''}" role="alert">
+		  			${errore}
+		  			</div>
 		        </c:forEach>
 		        <h5>Crea un tavolo</h5> 
 		    </div>

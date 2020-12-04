@@ -37,7 +37,9 @@
 	<main role="main" class="container">
 		<div class='card'>
 		    <div class='card-header'>
-		        <p style = color:red >${requestScope.avvertimento}</p>
+		        <div class="alert alert-primary  ${requestScope.avvertimento == null?'d-none':''}" role="alert">
+		 		 ${requestScope.avvertimento}
+		 	 	</div>
 		        <h5>Compra credito</h5> 
 		    </div>
 		    <div class='card-body'>

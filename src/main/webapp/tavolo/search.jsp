@@ -22,9 +22,13 @@
 		<div class='card'>
 		    <div class='card-header'>
 		        <c:forEach items = "${requestScope.errori}" var = "errore">
-		        	<p style = color:red ><c:out value = "${errore}"></c:out> <br></p>
+		        	<div class="alert alert-danger  ${errore == null?'d-none':''}" role="alert">
+		  			${errore}
+		  			</div>
 		        </c:forEach>
-		        <p style = color:blue >${requestScope.avvertimento}</p>
+		        <div class="alert alert-primary  ${requestScope.avvertimento == null?'d-none':''}" role="alert">
+		 		 ${requestScope.avvertimento}
+		 	 	</div>
 		        <h5>Cerca un tavolo</h5> 
 		    </div>
 		    <div class='card-body'>
