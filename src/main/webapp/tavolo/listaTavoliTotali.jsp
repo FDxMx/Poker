@@ -67,6 +67,7 @@
 					</table>
 				</div>
 				<!-- end card-body -->
+				<a style = "color: grey"  href="PlayManagementServlet">Indietro <span class="sr-only">(current)</span></a>
 			</div>
 		</div>
 		<!-- end container -->

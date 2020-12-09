@@ -74,6 +74,7 @@
 
 						</tbody>
 					</table>
+					<a style = "color: grey" class="nav-link" href="home.jsp">Indietro <span class="sr-only">(current)</span></a>
 				</div>
 				<!-- end card-body -->
 			</div>

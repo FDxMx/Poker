@@ -60,6 +60,7 @@
 					</table>
 				</div>
 				<!-- end card-body -->
+				<a style = "color: grey"  href="ListaTavoliServlet">Indietro <span class="sr-only">(current)</span></a>
 			</div>
 		</div>
 		<!-- end container -->

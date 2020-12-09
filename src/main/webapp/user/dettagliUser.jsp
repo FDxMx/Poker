@@ -66,6 +66,7 @@
 				  </c:forEach>
 		    	</dl>
 			<!-- end card-body -->			   
+			<a style = "color: grey"  href="ListaUserServlet">Indietro <span class="sr-only">(current)</span></a>
 		    </div>
 		</div>	
 	<!-- end container -->	

@@ -74,7 +74,8 @@
 						</div>
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-danger">Cerca!</button>
 					</form>
-			<!-- end card-body -->			   
+			<!-- end card-body -->		
+			<a style = "color: grey"  href="ListaUserServlet">Indietro <span class="sr-only">(current)</span></a>	   
 		    </div>
 		</div>	
 	<!-- end container -->	

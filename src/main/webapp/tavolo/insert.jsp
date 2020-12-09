@@ -73,9 +73,11 @@
 								<input type="date" class="form-control" name="dataCreazione" id="dataCreazione" placeholder="Inserire la data" value = "${requestScope.tavolo.dataCreazione}" required>
 							</div>
 						</div>
-						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-danger">Crea!</button>
+						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-danger">Crea!</button><br>
+							   
 					</form>
-			<!-- end card-body -->			   
+			<!-- end card-body -->	
+			<a style = "color: grey"  href="ListaTavoliServlet">Indietro <span class="sr-only">(current)</span></a>	
 		    </div>
 		</div>	
 	<!-- end container -->	

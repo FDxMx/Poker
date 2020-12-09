@@ -18,7 +18,7 @@
 	<title>Aggiorna User</title>
 	<!-- style per le pagine diverse dalla index -->
     <link href="./assets/css/global.css" rel="stylesheet">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
     	$("#form").submit(function( event ) {
@@ -42,7 +42,7 @@
       	    }
     	});
     });
-    </script> -->
+    </script>
 </head>
 <body>
 	<jsp:include page="../navbar.jsp" />
@@ -91,7 +91,8 @@
 						</div>
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-danger">Aggiorna</button>
 					</form>
-			<!-- end card-body -->			   
+			<!-- end card-body -->		
+			<a style = "color: grey"  href="ListaUserServlet">Indietro <span class="sr-only">(current)</span></a>	   
 		    </div>
 		</div>	
 	<!-- end container -->	
